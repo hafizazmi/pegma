@@ -11,7 +11,7 @@ include('../function/trim_data.php');
 include('../function/class.php');
 if(isset($_SESSION['id'])){
 if($_SESSION['type']==9){
-    $penilaian=$mysqli->query("UPDATE penilaian SET soalan='$soalan',mata_demerit='$mata_demerit' WHERE id=$nilai_id");
+    $penilaian=$mysqli->query("UPDATE soalan SET soalan='$soalan',mata_demerit='$mata_demerit' WHERE id=$nilai_id");
     if($penilaian){
         header('location:index.php?page=penilaian');
     }

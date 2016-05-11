@@ -11,7 +11,7 @@ include('../function/trim_data.php');
 include('../function/class.php');
 if(isset($_SESSION['id'])){
 if($_SESSION['type']==9){
-    $penilaian=$mysqli->query("INSERT INTO penilaian(soalan,mata_demerit) VALUES ('$soalan','$mata_demerit')");
+    $penilaian=$mysqli->query("INSERT INTO soalan(soalan,mata_demerit) VALUES ('$soalan','$mata_demerit')");
     if($penilaian){
         header('location:index.php?page=penilaian');
     }

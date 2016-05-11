@@ -11,7 +11,7 @@ include('../function/trim_data.php');
 include('../function/class.php');
 if(isset($_SESSION['id'])){
     if($_SESSION['type']==9){
-        $penilaian=$mysqli->query("DELETE FROM penilaian WHERE id=$id");
+        $penilaian=$mysqli->query("DELETE FROM soalan WHERE id=$id");
         if($penilaian){
             header('location:index.php?page=penilaian');
         }

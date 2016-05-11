@@ -5,7 +5,7 @@ class db {
         $hostname = 'localhost';
         $username = 'root';
         $password = '';
-        $dbname   = 'pegmadb';
+        $dbname   = 'storeevaldb';
         try {
             return new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
         } catch(PDOException $e) {

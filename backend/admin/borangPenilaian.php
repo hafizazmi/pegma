@@ -1,5 +1,5 @@
 <?php
-$penilaian=$con->query("SELECT * FROM penilaian");
+$penilaian=$con->query("SELECT * FROM soalan");
 
 $rownum = $penilaian->num_rows;
 ?>
