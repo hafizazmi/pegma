@@ -1,0 +1,14 @@
+<div class="form-group">
+    <input class="form-control" ng-model="list.filter">
+</div>
+
+<hr>
+
+<ul class="list-unstyled jumbotron">
+    <li ng-repeat="store in list.stores | filter: list.filter">
+        <p ng-bind="store.nama_gerai"></p>
+        <small class="text-muted" ng-bind="store.negeri"></small>
+        <br>
+        <a class="btn btn-primary btn-sm " ui-sref="storeDetail({ store_id: store.id})">view detail</a>
+    </li>
+</ul>
