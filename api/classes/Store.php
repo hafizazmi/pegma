@@ -66,6 +66,8 @@ class Store {
                 }
             }
 
+            // echo json_encode($cleaned_result);
+
             $temp_rate = [];
 
             // Kiraan bintang dan total rating
@@ -89,16 +91,29 @@ class Store {
                 }
             }
 
+
             // Letak Value Bintang berdasarkan ID
+            foreach ($cleaned_result as $k => &$value) {
+                foreach ($value['ratings'] as $__k => &$cr_rating) {
+                    foreach ($temp_rate as $key => $rate) {
+                        if ($rate['aspect_id'] === $cr_rating['aspect_id']) {
+                            $cr_rating['rate'] = $rate['rate'] / $rate['total'];
+                        }
+                    }
+                }
+            }
+
+            // Remove duplicates
             $exist = false;
             foreach ($cleaned_result as $k => &$value) {
                 foreach ($value['ratings'] as $__k => &$cr_rating) {
                     foreach ($temp_rate as $key => $rate) {
                         if ($exist === $cr_rating['aspect_id']) {
-                            array_splice($value['ratings'], $__k, 1);
+                            if (sizeof($value['ratings']) > 1) {
+                                array_splice($value['ratings'], $__k, 1);
+                            }
                         } else {
                             if ($rate['aspect_id'] === $cr_rating['aspect_id']) {
-                                $cr_rating['rate'] = $rate['rate'] / $rate['total'];
                                 $exist = $rate['aspect_id'];
                             }
                         }
