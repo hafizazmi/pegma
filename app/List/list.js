@@ -8,7 +8,8 @@
 
     function listCtrl(Store){
         var list = this;
-        list.stores = Store.query()
+        list.stores = Store.get()
+        list.test = 5
     }
 
     function storeCtrl(Store, $stateParams){

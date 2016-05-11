@@ -11,20 +11,11 @@ $app->set([
 ]);
 
 $app->on("GET /stores", function() {
-    $dbh = db::connect();
-    $sql = "SELECT * from gerai";
-    $query = $dbh->prepare($sql);
-    $query->execute();
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    $this->json($result)->end();
+    $result = new Store();
+    $this->json($result->getAll())->end();
 });
 
 $app->on("GET /stores/:?", function($store_id) {
-    $dbh = db::connect();
-    $sql = "SELECT * from gerai WHERE id = :id";
-    $param = [":id"=> $store_id];
-    $query = $dbh->prepare($sql);
-    $query->execute($param);
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    $this->json($result)->end();
+    $result = new Store();
+    $this->json($result->getOne($store_id))->end();
 });

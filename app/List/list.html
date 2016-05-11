@@ -5,9 +5,11 @@
 <hr>
 
 <ul class="list-unstyled jumbotron">
-    <li ng-repeat="store in list.stores | filter: list.filter">
+    <li ng-repeat="store in list.stores.data | filter: list.filter">
         <p ng-bind="store.name"></p>
         <small class="text-muted" ng-bind="store.description"></small>
+        <br>
+        <input-stars max="5" ng-model="store.bintang_value"></input-stars>
         <br>
         <a class="btn btn-primary btn-sm " ui-sref="storeDetail({ store_id: store.id})">view detail</a>
     </li>

@@ -9,6 +9,7 @@
             //library
             'ngResource',
             'ui.router',
+            'angular-input-stars',
 
             //module
             'StoreEval.List'

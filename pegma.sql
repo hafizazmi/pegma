@@ -13,17 +13,17 @@
 -- Dumping structure for table storeevaldb.bintang
 CREATE TABLE IF NOT EXISTS `bintang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `harga` int(11) DEFAULT NULL,
-  `kebersihan` int(11) DEFAULT NULL,
-  `kualiti_makanan` int(11) DEFAULT NULL,
+  `name` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table storeevaldb.bintang: ~0 rows (approximately)
 /*!40000 ALTER TABLE `bintang` DISABLE KEYS */;
-INSERT INTO `bintang` (`id`, `harga`, `kebersihan`, `kualiti_makanan`) VALUES
-	(1, 5, 2, 3);
+INSERT INTO `bintang` (`id`, `name`) VALUES
+	(1, 'harga'),
+	(2, 'kebersihan'),
+	(3, 'kualiti makanan');
 /*!40000 ALTER TABLE `bintang` ENABLE KEYS */;
 
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `gerai` (
   CONSTRAINT `FK_gerai_pemilik` FOREIGN KEY (`id_pemilik`) REFERENCES `pemilik` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table storeevaldb.gerai: ~0 rows (approximately)
+-- Dumping data for table storeevaldb.gerai: ~1 rows (approximately)
 /*!40000 ALTER TABLE `gerai` DISABLE KEYS */;
 INSERT INTO `gerai` (`id`, `name`, `description`, `lot_no`, `id_pemilik`) VALUES
 	(1, 'selera ramai', 'mejual lauk pauk', '543', 1),
@@ -93,8 +93,9 @@ CREATE TABLE IF NOT EXISTS `penilaian` (
   `id_pengguna` int(11) NOT NULL,
   `id_gerai` int(11) NOT NULL,
   `id_soalan` int(11) NOT NULL,
-  `id_bintang` int(11) NOT NULL,
   `waktu_nilai` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_bintang` int(11) DEFAULT NULL,
+  `bintang_value` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `FK_penilaian_pengguna` (`id_pengguna`),
@@ -105,11 +106,36 @@ CREATE TABLE IF NOT EXISTS `penilaian` (
   CONSTRAINT `FK_penilaian_gerai` FOREIGN KEY (`id_gerai`) REFERENCES `gerai` (`id`),
   CONSTRAINT `FK_penilaian_pengguna` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`),
   CONSTRAINT `FK_penilaian_soalan` FOREIGN KEY (`id_soalan`) REFERENCES `soalan` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table storeevaldb.penilaian: ~0 rows (approximately)
+-- Dumping data for table storeevaldb.penilaian: ~1 rows (approximately)
 /*!40000 ALTER TABLE `penilaian` DISABLE KEYS */;
+INSERT INTO `penilaian` (`id`, `id_pengguna`, `id_gerai`, `id_soalan`, `waktu_nilai`, `id_bintang`, `bintang_value`) VALUES
+	(2, 1, 1, 1, '2016-05-12 01:24:54', 1, 3),
+	(3, 1, 1, 1, '2016-05-12 01:25:11', 2, 2),
+	(4, 1, 1, 1, '2016-05-12 01:25:42', 3, 5);
 /*!40000 ALTER TABLE `penilaian` ENABLE KEYS */;
+
+
+-- Dumping structure for table storeevaldb.review
+CREATE TABLE IF NOT EXISTS `review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `review` text,
+  `status` int(11) DEFAULT NULL,
+  `id_gerai` int(11) DEFAULT NULL,
+  `id_pengguna` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_review_gerai` (`id_gerai`),
+  KEY `FK_review_pengguna` (`id_pengguna`),
+  CONSTRAINT `FK_review_gerai` FOREIGN KEY (`id_gerai`) REFERENCES `gerai` (`id`),
+  CONSTRAINT `FK_review_pengguna` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table storeevaldb.review: ~1 rows (approximately)
+/*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` (`id`, `review`, `status`, `id_gerai`, `id_pengguna`) VALUES
+	(1, 'lalala', 1, 1, 1);
+/*!40000 ALTER TABLE `review` ENABLE KEYS */;
 
 
 -- Dumping structure for table storeevaldb.soalan
@@ -122,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `soalan` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table storeevaldb.soalan: ~0 rows (approximately)
+-- Dumping data for table storeevaldb.soalan: ~3 rows (approximately)
 /*!40000 ALTER TABLE `soalan` DISABLE KEYS */;
 INSERT INTO `soalan` (`id`, `soalan`, `mata_demerit`, `markah`) VALUES
 	(1, 'ape je lah', NULL, NULL),
