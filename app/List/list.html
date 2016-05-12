@@ -4,8 +4,8 @@
 
 <hr>
 
-<ul class="list-unstyled jumbotron">
-    <li ng-repeat="store in list.stores.data | filter: list.filter">
+<ul class="list-unstyled">
+    <li class="jumbotron" ng-repeat="store in list.stores.data | filter: list.filter">
         <p ng-bind="store.name"></p>
         <small class="text-muted" ng-bind="store.description"></small>
         <br>

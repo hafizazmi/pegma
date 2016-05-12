@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
         $gerai=$mysqli->query("INSERT INTO profile(nama,nric,alamat1,poskod,bandar,daerah,negeri) VALUES ('$nama_pemilik','$ic_pemilik','$alamat_pemilik','$poskod_pemilik','$bandar_pemilik','$daerah_pemilik','$negeri_pemilik')");
         $gerai=$mysqli->query("INSERT INTO syarikat(nama,nric,alamat1,poskod,bandar,daerah,negeri) VALUES ('$nama_syarikat','$alamat_syarikat','$poskod_sarikat','$bandar_syarikat','$daerah_syarikat','$negeri_syarikat','$no_syarikat','$no_lesen')");
         if($gerai){
-            header('location:index.php?page=penilaian');
+            header('location:index.php?page=gerai-makanan');
         }
     }
 }

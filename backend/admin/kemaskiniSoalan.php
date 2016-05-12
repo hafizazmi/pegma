@@ -1,6 +1,6 @@
 <?php
 $nilai_id=$_GET['id'];
-$penilaian=$con->query("SELECT * FROM soalan WHERE id=$nilai_id");
+$penilaian=$con->query("SELECT * FROM penilaian WHERE id=$nilai_id");
 $nilai_data=$penilaian->fetch_array();
 
 ?>

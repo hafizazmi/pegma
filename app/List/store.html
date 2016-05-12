@@ -1,59 +1,42 @@
+<div align="center">
 <div>
-    <h2 align="center">stall name</h2>
-    <p>stall description</p>
+    <h2 align="center" ng-bind="store.name"></h2>
+    <p align="center" ng-bind="store.description"></p>
 
     <hr>
 </div>
 <div class="panel panel-default">
+    <h3>Penilaian</h3>
     <div class="panel-heading">
-        <h3 class="panel-title">Kebersihan</h3>
+        <p class="panel-title">Kebersihan</p>
     </div>
     <div class="panel-body">
         <input-stars max="5" ng-model="store.bintang_value"></input-stars>
     </div>
 </div>
-<hr>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Harga</h3>
-    </div>
-    <div class="panel-body">
-        <input type="text" class="rating rating-loading" value="2" data-size="xs" title="">
-    </div>
-</div>
+
 
 <hr>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Kualiti Makanan</h3>
-    </div>
-    <div class="panel-body">
-        <input type="text" class="rating rating-loading" value="2" data-size="xs" title="">
-    </div>
-</div>
+
 
 <div class="col-lg-12 text-center">
-    <button class="btn btn-primary" type="submit">Nilai</button>
-    <button class="btn btn-primary" type="reset">Reset</button>
+    <button class="btn btn-primary btn-xs" type="submit">Nilai</button>
+    <button class="btn btn-primary btn-xs" type="reset">Reset</button>
 </div>
 
-<div class="signup-header">
-    <h2 align="center">Aduan</h2>
 
-</div>
 
 <hr>
 
-<label>Aduan
-    <span class="color-red">*</span>
-</label>
+<h3>Aduan</h3>
 <textarea class="form-control" rows="5" id="comment"></textarea>
 
 <hr>
 <div class="row">
 
     <div class="col-lg-12 text-center">
-        <button class="btn btn-primary" type="submit">Hantar</button>
-        <button class="btn btn-primary" type="reset">Reset</button>
+        <button class="btn btn-primary btn-sx" type="submit">Hantar</button>
+        <button class="btn btn-primary btn-sx" type="reset">Reset</button>
     </div>
+</div>
 </div>
