@@ -36,29 +36,36 @@ class Store {
                 if (!sizeof($cleaned_result)) {
 
                     // New Data Strucutre
-                    $res['ratings'] = [[
-                        'aspect_id' => $res['bintang_id'],
-                        'aspect' => $res['aspect'],
-                        'rate' => $res['bintang_value']
-                    ]];
-
+                    if ($res['bintang_id']) {
+                        $res['ratings'] = [[
+                            'aspect_id' => $res['bintang_id'],
+                            'aspect' => $res['aspect'],
+                            'rate' => $res['bintang_value']
+                        ]];
+                    }
                     array_push($cleaned_result, $res);
 
                 } else {
                     foreach ($cleaned_result as $cr_k => &$cleaned_res) {
                         if ($cleaned_res['id'] === $res['id']) {
-                            $temp = [
-                                'aspect_id' => $res['bintang_id'],
-                                'aspect' => $res['aspect'],
-                                'rate' => $res['bintang_value']
-                            ];
+                            if ($res['bintang_id']) {
+                                $temp = [
+                                    'aspect_id' => $res['bintang_id'],
+                                    'aspect' => $res['aspect'],
+                                    'rate' => $res['bintang_value']
+                                ];
+                            } else {
+                                $temp = null;
+                            }
                             array_push($cleaned_res['ratings'], $temp);
                         } else {
-                            $res['ratings'] = [[
-                                'aspect_id' => $res['bintang_id'],
-                                'aspect' => $res['aspect'],
-                                'rate' => $res['bintang_value']
-                            ]];
+                            if ($res['bintang_id']) {
+                                $res['ratings'] = [[
+                                    'aspect_id' => $res['bintang_id'],
+                                    'aspect' => $res['aspect'],
+                                    'rate' => $res['bintang_value']
+                                ]];
+                            }
 
                             array_push($cleaned_result, $res);                        
                         }
@@ -69,12 +76,14 @@ class Store {
             // echo json_encode($cleaned_result);
 
             $temp_rate = [];
+            return $cleaned_result;
 
             // Kiraan bintang dan total rating
-            foreach ($cleaned_result as $k => &$value) {
+            foreach ($cleaned_result as $k => $value) {
                 foreach ($value['ratings'] as $__k => &$cr_rating) {
                     if (!sizeof($temp_rate)) {
                         $t = [
+                            'store_id' => $value['id'],
                             'aspect_id' => $cr_rating['aspect_id'],
                             'rate' => $cr_rating['rate'],
                             'total' => 1
@@ -83,13 +92,24 @@ class Store {
                     } else {
                         foreach ($temp_rate as $k => &$r_v) {
                             if ($r_v['aspect_id'] === $cr_rating['aspect_id']) {
+                                $r_v['store_id'] = $value['id'];
                                 $r_v['rate'] = $r_v['rate'] + $cr_rating['rate'];
                                 $r_v['total']++;
+                            } else {
+                                $tee = [
+                                    'store_id' => $value['id'],
+                                    'aspect_id' => $cr_rating['aspect_id'],
+                                    'rate' => $cr_rating['rate'],
+                                    'total' => 1
+                                ];
+                                array_push($temp_rate, $tee);
                             }
                         }
                     }
                 }
             }
+
+            return $temp_rate;
 
 
             // Letak Value Bintang berdasarkan ID
@@ -102,6 +122,8 @@ class Store {
                     }
                 }
             }
+
+            // exit;
 
             // Remove duplicates
             $exist = false;
@@ -123,7 +145,8 @@ class Store {
 
             $response = [
                 'status' => true,
-                'data' => $cleaned_result
+                'data' => $cleaned_result,
+                'cc' => $a
             ];
         }
 
