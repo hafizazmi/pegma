@@ -9,7 +9,14 @@
         <p ng-bind="store.name"></p>
         <small class="text-muted" ng-bind="store.description"></small>
         <br>
-        <input-stars max="5" ng-model="store.bintang_value"></input-stars>
+        <label for="harga">harga</label>
+        <input-stars id="harga" max="5" ng-model="store.bintang_value"></input-stars>
+        <br>
+        <label for="Kebersihan">Kebersihan</label>
+        <input-stars id="harga" max="5" ng-model="store.bintang_value"></input-stars>
+        <br>
+        <label for="kualitiMakanan">Kualiti Makanan</label>
+        <input-stars id="harga" max="5" ng-model="store.bintang_value"></input-stars>
         <br>
         <a class="btn btn-primary btn-sm " ui-sref="storeDetail({ store_id: store.id})">view detail</a>
     </li>

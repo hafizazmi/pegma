@@ -1,70 +1,97 @@
-<?php session_start();
-header("Cache_Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache_Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-header("Context-Type: text\html");
-include('class/connection.class.php');
-$con=connect();
-if(isset($_SESSION['id'])){
-	if($_SESSION['type']==9){
-		header('location:admin/');
-	}
-}else{
 
-	?>
-
-
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
-		<title>PeGMa</title>
-
-		<link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
-
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-	<section id="logo">
-		<a href="#"><img src="assets/images/logo.png" alt="" /></a>
-	</section>
-
-	<section class="container">
-		<section class="row">
-			<form method="post" action="authentication.php" role="login">
-				<div class="form-group">
-					<input type="text" name="username" placeholder="Masukkan kata nama" required class="form-control" />
-					<span class="glyphicon glyphicon-user"></span>
-				</div>
-
-				<div class="form-group">
-					<input type="password" name="password" placeholder="Masukkkan kata laluan" required class="form-control" />
-					<span class="glyphicon glyphicon-lock"></span>
-				</div>
-
-				<div class="form-group">
-					<input type="checkbox" name="remember" value="1" /> Ingat saya
-				</div>
-
-				<button type="submit" name="go" class="btn btn-block btn-primary">Log masuk</button>
-
-				<section>
-					<a href="#">Lupa kata laluan ?</a>
-				</section>
-			</form>
-		</section>
-	</section>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	</body>
-	</html>
-<?php }
+<?php 
+    session_start();
+    header("Cache_Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Cache_Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+    header("Context-Type: text/html");
+    include('dbcon.php');
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+<!--    facicon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="static/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="static/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="static/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="static/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="static/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="static/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="static/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="static/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="static/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>StoreEval</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/signin.css" rel="stylesheet">
+    <link href="static/css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="pos-f-t">
+
+    <nav class="navbar navbar-light navbar-static-top bg-faded">
+        <div class="container">
+            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+                &#9776;
+            </button>
+            <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+                <a class="navbar-brand" href="index.php">StoreEval</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    <form class="form-signin" action="login.php" method="post">
+        <h2 class="form-signin-heading">Sila Log Masuk</h2>
+        <label for="inputUsername" class="sr-only">Katanama</label>
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Katanama" required autofocus>
+        <label for="inputPassword" class="sr-only">Katalaluan</label>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Katalaluan" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Ingat Saya
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log Masuk</button>
+    </form>
+
+</div> <!-- /container -->
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">StoreEval</span>
+    </div>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+</body>
+</html>

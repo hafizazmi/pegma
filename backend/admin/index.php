@@ -1,91 +1,81 @@
-<?php session_start();
-header("Cache_Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache_Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-header("Context-Type: text\html");
-include('../class/connection.class.php');
-$con=connect(); 
-include('open_link.php');
-if(isset($_SESSION['id'])){
-if($_SESSION['type']==9){
-    ?>
-}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>
-        <?php
-        echo $title;
-
-        ?>
-
-    </title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+	<?php
+	include('../include/head.php');
+	?>
 </head>
-
 <body>
 
-    <div id="wrapper">
+<div class="pos-f-t">
+	<?php include('../include/navbar.php'); ?>
+</div>
 
-        <!-- Navigation -->
-<?php include('include/navbar.php');?>
+<div class="container">
+	<div class="page-header m-t-1">
+		<h1>Pengguna</h1>
+	</div>
 
-        <div id="page-wrapper">
-<?php include($page_link);?>
-            <!-- /.container-fluid -->
+	<div class="card card-block row">
+		<p>
+			<a href="create.php" class="btn btn-success-outline">Create</a>
+		</p>
 
-        </div>
-        <!-- /#page-wrapper -->
+		<table class="table table-striped table-sm ">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email Address</th>
+				<th>Mobile Number</th>
+				<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php
+			include 'database.php';
+			$pdo = Database::connect();
+			$sql = 'SELECT * FROM pemilik ORDER BY id DESC';
+			foreach ($pdo->query($sql) as $row) {
+				echo '<tr>';
+				echo '<td>'. $row['name'] . '</td>';
+				echo '<td>'. $row['email'] . '</td>';
+				echo '<td>'. $row['mobile'] . '</td>';
+				echo '<td width=250>';
+				echo '<a class="btn btn-primary-outline btn-sm" href="read.php?id='.$row['id'].'">Read</a>';
+				echo '&nbsp;';
+				echo '<a class="btn btn-success-outline btn-sm" href="update.php?id='.$row['id'].'">Update</a>';
+				echo '&nbsp;';
+				echo '<a class="btn btn-danger-outline btn-sm" href="delete.php?id='.$row['id'].'">Delete</a>';
+				echo '</td>';
+				echo '</tr>';
+			}
+			Database::disconnect();
+			?>
+			</tbody>
+		</table>
+	</div>
 
-    </div>
-    <!-- /#wrapper -->
+</div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+
+
+
+
+<?php
+include('../include/footer.php');
+?>
+
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
 </body>
-
 </html>
 
-<?php 
-}else{
-    header('location:../');
-}
-}else{
-    header('location:../');
-}?>
+
