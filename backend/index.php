@@ -37,7 +37,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <title>StoreEval</title>
+    <title>PeGMa</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
                 &#9776;
             </button>
             <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-                <a class="navbar-brand" href="index.php">StoreEval</a>
+                <a class="navbar-brand" href="index.php">PeGMa</a>
             </div>
         </div>
     </nav>
@@ -83,7 +83,7 @@
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">StoreEval</span>
+        <span class="text-muted">PeGMa</span>
     </div>
 </footer>
 

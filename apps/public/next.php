@@ -14,41 +14,42 @@
         </div>
     </div>
 </nav>
-
 <div class="container">
+    <form action="">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">nama gerai</h4>
+                <p class="card-text">penerangan gerai</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <label for="harga" class="control-label">Extra Small Rating</label>
+                    <input id="harga" name="harga" class="rating rating-loading" value="1" data-min="0" data-max="5" data-step="1" data-size="xs">
+                </li>
+                <li class="list-group-item">
+                    <label for="makanan" class="control-label">Extra Small Rating</label>
+                    <input id="makanan" name="makanan" class="rating rating-loading" value="1" data-min="0" data-max="5" data-step="1" data-size="xs">
+                </li>
+                <li class="list-group-item">
+                    <label for="kebersihan" class="control-label">Extra Small Rating</label>
+                    <input id="kebersihan" name="kebersihan" class="rating rating-loading" value="1" data-min="0" data-max="5" data-step="1" data-size="xs">
+                </li>
+            </ul>
+            <div class="card-block">
+                <button type="submit" class="btn btn-primary btn-xs">Nilai</button>
+            </div>
+        </div>
 
-    <h3>stall</h3>
-    <p>description</p>
-
-    <h4>
-        Penilaian
-    </h4>
-
-    <br>
-    <form action="evaluate.php" method="post">
-        <label for="harga">harga</label>
-        <input id="harga" type="text" class="rating rating-disabled" data-size="xs">
-        <br>
-        <label for="kebersihan">Kebersihan</label>
-        <input id="kebersihan" type="text" class="rating rating-disabled" data-size="xs">
-        <br>
-        <label for="kualitiMakanan">Kualiti Makanan</label>
-        <input id="kualitiMakanan" type="text" class="rating rating-disabled" data-size="xs">
-        <br>
-        <a class="btn btn-primary btn-sm" type="submit">Nilai</a>
+        <div class="card">
+            <div class="card-block">
+                <label for="aduan">Aduan</label>
+                <textarea class="form-control" id="aduan" name="aduan" rows="3"></textarea>
+            </div>
+            <div class="card-block">
+                <button type="submit" class="btn btn-primary btn-xs">Hantar</button>
+            </div>
+        </div>
     </form>
-    <hr>
-    <h4>
-        Aduan
-    </h4>
-    <form action="review.php" class="" method="post">
-        <label for="review"></label>
-        <textarea name="review" id="review" cols="30" rows="10"></textarea>
-        <br>
-        <a class="btn btn-primary btn-sm " type="submit" >Nilai</a>
-    </form>
-
 </div>
-
 </body>
 </html>

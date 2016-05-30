@@ -1,5 +1,5 @@
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">StoreEval</span>
+        <span class="text-muted">PeGMa</span>
     </div>
 </footer>

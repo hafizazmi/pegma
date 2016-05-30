@@ -5,47 +5,47 @@
 </head>
 
 <body>
+
 <nav class="navbar navbar-light navbar-static-top bg-faded">
     <div class="container">
+
         <div class=" navbar-toggleable-xs" id="exCollapsingNavbar2">
             <a class="navbar-brand" href="index.php">StoreEval</a>
         </div>
     </div>
 </nav>
 <div class="container">
+    <?php
+    include 'database.php';
+    $pdo = Database::connect();
+    $sql = 'SELECT  pn.id_gerai, pn.id, pn.bintang_value, pn.markah_soalan, pn.aduan,
+                    gr.name AS \'nama gerai\', gr.description AS \'penerangan\',
+                    pg.role
+            FROM penilaian pn
+            JOIN gerai gr ON gr.id = pn.id_gerai
+            JOIN pengguna pg ON pg.id = pn.id_pengguna
+				GROUP BY gr.id';
+    foreach ($pdo->query($sql) as $row) {
+        echo '<div class="card">';
+        echo '<div class="card-block">';
+        echo '<h4 class="card-title">Gerai Makanan</h4>';
+        echo '<h3>'. $row['nama gerai'] .'</h3>';
+        echo '<small class="card-text">'. $row['penerangan'] .'</small>';
+        echo '</div>';
+        echo '<ul class="list-group list-group-flush">';
+        echo '<li class="list-group-item">';
+        echo '<h4>mata gerai</h4>';
+        echo '<p>'. $row['markah_soalan'] .'</p>';
+        echo '</li>';
+        echo '</ul>';
+        echo '<div class="card-block">';
+        echo '<a class="btn btn-primary btn-sm" href="next.php?id='.$row['id'].'">Lagi</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+    Database::disconnect();
+    ?>
 
-
-
-    <div class="card card-block">
-        <div class="card-title">
-            <h4>Penilaian Gred Gerai Makanan</h4>
-
-            <h3>Gerai </h3>
-            <small> penerangan</small>
-        </div>
-        <form action="">
-            <table class="table table-bordered table-responsive">
-                <thead>
-                <tr>
-                    <th>Soalan</th>
-                    <th>mata demerit</th>
-                    <th><label for="mataDemerit"></label> markah penilaian</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>hello worldhello worldhello worldhello worldhello world</td>
-                    <td>12</td>
-                    <td><input id="mataDemerit" type="text" class="form-control"></td>
-                </tr>
-                </tbody>
-            </table>
-            <button class="btn btn-primary btn-xs">Nilai</button>
-        </form>
-    </div>
 </div>
-
-
-
 </body>
 </html>
